@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="/_template.xhtml">
+	<ui:define name="corpo">
+	<div id="conteudo">
+		<h:form id="formUser">
+			<h2>Novo Usuário</h2>
+
+			<fieldset>
+				<legend>Dados do Usuário</legend>
+
+				<h:outputText value="Login:" for="login" />
+				<h:inputText id="login" value="#{usuarioBean.usuario.login}" />
+
+				<h:outputText value="Senha:" for="senha" />
+				<h:inputSecret id="senha" value="#{usuarioBean.usuario.senha}" />
+
+				<h:commandButton action="#{usuarioBean.cadastrar}"
+					value="Cadastrar Usuário" />
+			</fieldset>
+		</h:form>
+
+		<h2>Listagem de Usuários</h2>
+		<h:form id="formListaUsuario">
+			<h:dataTable value="#{usuarioBean.usuarios}" var="usuario"
+				styleClass="dados" rowClasses="impar,par">
+				<h:column>
+					<f:facet name="header">Nome</f:facet>
+					#{usuario.login}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Senha</f:facet>
+					#{usuario.senha}
+				</h:column>
+				<h:column>
+					<f:facet name="header">Excluir</f:facet>
+					<h:commandLink value="excluir" action="#{usuarioBean.remove(usuario)}">
+						<f:ajax render=":formListaUsuario" />
+					</h:commandLink>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Alterar</f:facet>
+					<h:commandLink value="alterar">
+					<f:setPropertyActionListener value="#{usuario}"
+							target="#{usuarioBean.usuario}" />
+						<f:ajax render=":formUser" />
+					</h:commandLink>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+	</div>
+	</ui:define>
+	</ui:composition>
+
+</html>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+ <title><ui:insert name="title">Sistema de Notas Fiscais - UberDist</ui:insert></title>
+<h:outputStylesheet name="style.css" library="css"/>
+<h:outputScript name="jsf.js" library="javax.faces" target="head" />
+
+</h:head>
+
+<h:body>
+	<div id="cabecalho">
+		<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany"/>
+		<div id="usuarioLogado">
+			<h:outputText value="Logado como: #{loginBean.usuario.login}" rendered="#{not empty loginBean.usuario.login}"/>
+		</div>
+		<h:form>
+		<p:themeSwitcher value="#{temasBean.tema}">
+			<f:selectItems value="#{temasBean.temas}"/>
+			<f:ajax/>
+		</p:themeSwitcher>
+		</h:form>
+	</div>
+	
+	<div id="conteudo">
+		<h:form>
+			<p:menubar rendered="#{not empty loginBean.usuario.login}">
+				<p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-document"/>
+				<p:submenu label="NotasFiscais">
+					<p:menuitem value="Cadastro" url="notafiscal.xhtml" icon="ui-icon ui-icon-pencil"/>
+					<p:menuitem value="Listagem" url="listanotas.xhtml" icon="ui-icon ui-icon-search"/>
+				</p:submenu>
+				<p:menuitem value="Gráficos" url="graficos.xhtml" icon="ui-icon ui-icon-document"/>
+				<p:menuitem value="Sair" action="#{loginBean.logout}" icon="ui-icon ui-icon-close"/>
+			</p:menubar>
+		</h:form>
+		<ui:insert name="corpo"/>
+	</div>
+	
+	<div id="rodape">
+		Copyright 2013. Todos os direitos reservados  a Carlos Coqueiro
+	</div>
+</h:body>
+</html>

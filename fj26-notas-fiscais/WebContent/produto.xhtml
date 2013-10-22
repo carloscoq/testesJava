@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/_template.xhtml">
+
+	<ui:define name="title">Produtos</ui:define>
+	<ui:define name="corpo">
+		
+		<h:form id="formProduto">
+			<h2>
+				<h:outputText value="Novo Produto"
+				rendered="#{empty produtoBean.produto.id}" /> 
+				<h:outputText value="Editar Produto" rendered="#{not empty produtoBean.produto.id}" />
+			</h2>
+			<p:fieldset legend="Dados do Produto">
+							
+				<h:outputLabel value="Nome:" for="nome" /> 
+				<p:inputText id="nome" value="#{produtoBean.produto.nome}" />
+				
+				<h:outputLabel value="Descrição:" for="descricao" /> 
+				<p:editor id="descricao" value="#{produtoBean.produto.descricao}" />
+								
+				<h:outputLabel 	value="Preço:" for="preco" />
+				<p:inputText id="preco"	value="#{produtoBean.produto.preco}" />
+				
+				<h:outputLabel value="Imagem:" />
+				<p:fileUpload mode="advanced" dragDropSupport="true" />
+				
+				<p:commandButton value="Gravar" action="#{produtoBean.grava}" update=":formResultados :formProduto"/>
+				<p:commandButton value="Cancelar a Edição" action="#{produtoBean.cancelaAlteracao}" rendered="#{not empty produtoBean.produto.id}"
+				update=":formProduto :formResultados"/>
+				
+			</p:fieldset>
+		</h:form>
+		
+		<h2>Listagem de Produtos</h2>
+		<h:form id="formResultados">
+			<p:dataTable value="#{produtoBean.dataModel}" var="produto" paginator="true" rows="5" dynamic="true" lazy="true">
+				<p:column headerText="Nome">
+					#{produto.nome}
+				</p:column>
+				<p:column headerText="Descrição">
+					<h:outputText value="#{produto.descricao}" escape="false"/>
+				</p:column>
+				<p:column headerText="Preço" footerText="Soma: ">
+					<h:outputText value="#{produto.preco}">
+						<f:convertNumber type="currency" currencySymbol="R$" locale="pt_BR"/>
+					</h:outputText>
+				</p:column>
+				<p:column headerText="Remover">
+					<p:commandLink action="#{produtoBean.remove(produto)}" value="Remover" update=":formResultados"/>
+				</p:column>
+				<p:column headerText="Alterar">
+					<p:commandLink value="Alterar" update=":formProduto">
+						<f:setPropertyActionListener value="#{produto}"
+							target="#{produtoBean.produto}" />
+					</p:commandLink>
+				</p:column>
+		</p:dataTable>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+
+
+</html>
