@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.chart.PieChartModel;
@@ -87,6 +88,7 @@ public class ProdutoBean {
 	}
 	
 	public void cancelaAlteracao(){
+		FacesContext.getCurrentInstance().getViewRoot().getChildren().clear();
 		this.produto = new Produto();
 	}
 	

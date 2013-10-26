@@ -10,7 +10,9 @@
 			<h2>Lista de Notas Fiscais</h2>
 			<p:dataTable value="#{listaNotasFiscaisBean.dataModel}" var="notaFiscal"
 			paginator="true" rows="4" dynamic="true" lazy="true" id="listaNotasDataTable">
-				<p:column headerText="CNPJ">#{notaFiscal.cnpj}</p:column>
+				<p:column headerText="CNPJ">
+					<h:outputText value="#{notaFiscal.cnpj}" converter="cnpj"/>
+				</p:column>
 				<p:column headerText="Data">
 					<h:outputText value="#{notaFiscal.data.time}">
 						<f:convertDateTime pattern="dd/MM/yyyy" locale="pt_BR"/>

@@ -9,13 +9,15 @@
 	<ui:composition template="/_template.xhtml">
 		<ui:define name="corpo">
 			<h:form id="formCadastroNotas">
+			<h:messages styleClass="erros "/>
 			<p:tabView>
 				<p:tab title="Cadastro de Notas Fiscais">
 				<fieldset>
 					<legend>Dados da Nota Fiscal</legend>
 					
 					<h:outputLabel value="CNPJ Cliente:" />
-					<p:inputMask mask="99.999.999/9999-99" value="#{notaFiscalBean.notaFiscal.cnpj}"/>
+					<p:inputMask mask="99.999.999/9999-99" value="#{notaFiscalBean.notaFiscal.cnpj}"
+					converter="cnpj" converterMessage="CNPJ inválido"/>
 					
 					<h:outputLabel value="Data:" />
 					<p:calendar pattern="dd/MM/yyyy" value="#{notaFiscalBean.notaFiscal.data.time}"/>

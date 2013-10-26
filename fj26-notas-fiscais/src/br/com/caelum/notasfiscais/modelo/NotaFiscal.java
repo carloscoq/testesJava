@@ -18,7 +18,7 @@ public class NotaFiscal {
 	@Id
 	@GeneratedValue
 	private Long id;
-
+	
 	private String cnpj;
 
 	@Temporal(TemporalType.DATE)

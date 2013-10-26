@@ -13,6 +13,7 @@
 	<ui:define name="corpo">
 		
 		<h:form id="formProduto">
+			<h:messages styleClass="erros"/>
 			<h2>
 				<h:outputText value="Novo Produto"
 				rendered="#{empty produtoBean.produto.id}" /> 
@@ -21,20 +22,25 @@
 			<p:fieldset legend="Dados do Produto">
 							
 				<h:outputLabel value="Nome:" for="nome" /> 
-				<p:inputText id="nome" value="#{produtoBean.produto.nome}" />
+				<p:inputText id="nome" value="#{produtoBean.produto.nome}">
+					<f:validator validatorId="comecaComMaiuscula"/>
+				</p:inputText>
 				
 				<h:outputLabel value="Descrição:" for="descricao" /> 
 				<p:editor id="descricao" value="#{produtoBean.produto.descricao}" />
 								
 				<h:outputLabel 	value="Preço:" for="preco" />
-				<p:inputText id="preco"	value="#{produtoBean.produto.preco}" />
+				<p:inputText id="preco"	value="#{produtoBean.produto.preco}" required="true"
+				requiredMessage="Preço Obrigatório" validatorMessage="O preço mínimo é R$0,50">
+					<f:validateDoubleRange minimum="0.50"/>
+				</p:inputText>
 				
 				<h:outputLabel value="Imagem:" />
 				<p:fileUpload mode="advanced" dragDropSupport="true" />
 				
 				<p:commandButton value="Gravar" action="#{produtoBean.grava}" update=":formResultados :formProduto"/>
 				<p:commandButton value="Cancelar a Edição" action="#{produtoBean.cancelaAlteracao}" rendered="#{not empty produtoBean.produto.id}"
-				update=":formProduto :formResultados"/>
+				update=":formProduto :formResultados" immediate="true"/>
 				
 			</p:fieldset>
 		</h:form>

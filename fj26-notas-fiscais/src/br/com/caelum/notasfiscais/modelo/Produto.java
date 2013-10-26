@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 public class Produto {
 	@Id @GeneratedValue
@@ -22,7 +24,7 @@ public class Produto {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	@NotEmpty(message="O Produto deve ter um nome válido")
 	public String getNome() {
 		return nome;
 	}
