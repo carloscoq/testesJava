@@ -1,14 +1,14 @@
 package br.com.caelum.notasfiscais.mb;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+
 @SessionScoped
-public class TemasBean {
+public class TemasBean implements Serializable{
 	
 	private Map<String, String> temas;
 

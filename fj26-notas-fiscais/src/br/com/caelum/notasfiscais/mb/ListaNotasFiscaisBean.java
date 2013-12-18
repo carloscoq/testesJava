@@ -1,14 +1,12 @@
 package br.com.caelum.notasfiscais.mb;
 
-import javax.faces.bean.ManagedBean;
-
 import org.primefaces.model.LazyDataModel;
 
 import br.com.caelum.notasfiscais.dao.DAO;
 import br.com.caelum.notasfiscais.datamodel.DataModelNotasFiscais;
 import br.com.caelum.notasfiscais.modelo.NotaFiscal;
 
-@ManagedBean
+
 public class ListaNotasFiscaisBean {
 	
 	private NotaFiscal notafiscal;

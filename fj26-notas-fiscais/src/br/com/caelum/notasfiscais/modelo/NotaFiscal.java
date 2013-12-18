@@ -1,5 +1,6 @@
 package br.com.caelum.notasfiscais.modelo;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,7 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class NotaFiscal {
+public class NotaFiscal implements Serializable{
 
 	@Id
 	@GeneratedValue

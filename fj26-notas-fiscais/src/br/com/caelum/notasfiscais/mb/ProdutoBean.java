@@ -1,8 +1,8 @@
 package br.com.caelum.notasfiscais.mb;
 
+import java.io.Serializable;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
@@ -15,9 +15,9 @@ import br.com.caelum.notasfiscais.datamodel.DataModelProdutos;
 import br.com.caelum.notasfiscais.modelo.Produto;
 import br.com.caelum.notasfiscais.modelo.QuantidadePorProduto;
 
-@ManagedBean
+
 @ViewScoped
-public class ProdutoBean {
+public class ProdutoBean implements Serializable{
 	private Produto produto = new Produto();
 	private LazyDataModel<Produto> dataModel;
 

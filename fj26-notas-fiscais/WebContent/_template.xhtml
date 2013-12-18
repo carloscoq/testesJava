@@ -18,7 +18,7 @@
 	<div id="cabecalho">
 		<h:graphicImage library="imagens" name="logo-uber.png" id="logoCompany"/>
 		<div id="usuarioLogado">
-			<h:outputText value="Logado como: #{loginBean.usuario.login}" rendered="#{not empty loginBean.usuario.login}"/>
+			<h:outputText value="Logado como: #{usuarioLogado.usuario.login}" rendered="#{not empty usuarioLogado.usuario}"/>
 		</div>
 		<h:form>
 		<p:themeSwitcher value="#{temasBean.tema}">
@@ -30,7 +30,7 @@
 	
 	<div id="conteudo">
 		<h:form>
-			<p:menubar rendered="#{not empty loginBean.usuario.login}">
+			<p:menubar rendered="#{not empty usuarioLogado.usuario}">
 				<p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-document"/>
 				<p:submenu label="NotasFiscais">
 					<p:menuitem value="Cadastro" url="notafiscal.xhtml" icon="ui-icon ui-icon-pencil"/>

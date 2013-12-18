@@ -1,6 +1,8 @@
 package br.com.caelum.notasfiscais.modelo;
 
-public class QuantidadePorProduto {
+import java.io.Serializable;
+
+public class QuantidadePorProduto implements Serializable{
 	
 	private final Produto produto;
 	private final Long quantidade;
