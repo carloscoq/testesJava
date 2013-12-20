@@ -5,7 +5,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:caelum="http://java.sun.com/jsf/composite/caelum"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:s="http://jboss.org/seam/faces">
 
 <ui:composition template="/_template.xhtml">
 
@@ -15,8 +16,7 @@
 		<h:form id="formProduto">
 			<h:messages styleClass="erros"/>
 			<h2>
-				<h:outputText value="Novo Produto"
-				rendered="#{empty produtoBean.produto.id}" /> 
+				<h:outputText value="Novo Produto"	rendered="#{empty produtoBean.produto.id}" /> 
 				<h:outputText value="Editar Produto" rendered="#{not empty produtoBean.produto.id}" />
 			</h2>
 			<p:fieldset legend="Dados do Produto">
@@ -37,6 +37,9 @@
 				
 				<h:outputLabel value="Imagem:" />
 				<p:fileUpload mode="advanced" dragDropSupport="true" />
+				
+				<s:validateForm validatorId="nomeedescricao"/>
+				<s:validateForm validatorId="nomeProdutoExiste"/>
 				
 				<p:commandButton value="Gravar" action="#{produtoBean.grava}" update=":formResultados :formProduto"/>
 				<p:commandButton value="Cancelar a Edição" action="#{produtoBean.cancelaAlteracao}" rendered="#{not empty produtoBean.produto.id}"
