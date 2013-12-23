@@ -14,6 +14,11 @@ import br.com.caelum.notasfiscais.modelo.Usuario;
 @RequestScoped
 public class LoginBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3410044255837527176L;
+
 	private Usuario usuario = new Usuario();
 	
 	@Inject
